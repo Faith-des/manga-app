@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 .python-version
 server/conf.yml
+server/jap_dict/*

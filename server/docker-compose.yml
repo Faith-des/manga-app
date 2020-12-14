@@ -1,0 +1,16 @@
+---
+
+version: '3.7'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: export TESSDATA_PREFIX=/Users/faithsmetanova/Git/Learning/manga-ocr-api/tessdata
+#    volumes:
+#      - './config.yml:/app/config.yml'
+    ports:
+      - 8081:8081
+#      - 8000:8000
