@@ -1,0 +1,40 @@
+body {
+	padding: 0.5rem;
+
+	color: #777777;
+	font-family: sans-serif;
+	line-height: 1.15;
+	background-color: #000000;
+}
+
+.main-container {
+	margin: 0 auto;
+
+	background-color: #fff;
+}
+
+.content {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	/*repeat(auto-fit, minmax(200px, 1fr));*/
+
+	grid-gap: 1em;
+
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+	.main-container {
+		max-width: 80vw;
+		padding: 1rem;
+	}
+
+}
+
+@media (max-width: 769px) {
+	.content {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+}

@@ -1,0 +1,17 @@
+.side-bar {
+	display: flex;
+	/*max-width: 34rem;*/
+	/*margin-left: 1rem;*/
+}
+
+.side-bar__list {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+
+	list-style: none;
+
+
+}

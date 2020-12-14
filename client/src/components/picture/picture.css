@@ -1,0 +1,20 @@
+.picture {
+  position: relative;
+}
+
+.img {
+  display: block;
+  height: auto;
+  width: 720px;
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+  0 6px 6px rgba(0, 0, 0, 0.23);
+
+  user-select: none;
+	user-drag: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+  cursor: crosshair;
+}

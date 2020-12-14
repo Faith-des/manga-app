@@ -1,0 +1,15 @@
+.list-item {
+	padding: 1rem;
+	margin: 0 1rem;
+
+	font-size: 1rem;
+	line-height: 150%;
+
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+	0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.list-item:not(:last-child) {
+	margin-bottom: 1.5rem;
+}
+

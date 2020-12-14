@@ -1,0 +1,22 @@
+.nav-list {
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	padding: 1rem;
+
+	list-style: none;
+}
+
+.nav__item:not(:last-child) {
+	margin-right: 2rem;
+}
+
+.nav__link {
+	font-size: 1.1rem;
+	text-decoration: none;
+	color: #444444;
+}
+
+.nav__link:hover {
+	color: #797979;
+}
