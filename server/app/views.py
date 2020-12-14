@@ -10,29 +10,31 @@ HEADERS = MultiDict(
 
 
 async def area_text(request):
-    breakpoint()
 
-    data = await request.post()
-    # print(f"POST DATA: {dict(data)}")
-    # data = await request.json()
-    print(f"POST DATA: {dict(data1)}")
+    #data = await request.post()
+    data = await request.json()
+    print(f"POST DATA: {dict(data)}")
+    # {'dot1': [296, 99], 'dot2': [368, 191], 'path': '/static/media/img-1.6fd2fb05.jpg'}
 
-    data = {
-        "path": "test.jpg",
-        "X": (483, 34),
-        "Y": (541, 169)
-        #"image_path": "images/manga/pic_1.png",
-        # "top-left-dot": ("x", "y"),
-        # "bottom-right-dot": ("x", "y")
-    }
+    file_name = data["path"].split("/")[-1]
+    server_img_path = "manga/" + ".".join([file_name.split(".")[0], file_name.split(".")[-1]])
+
+    # data = {
+    #     "path": "manga/test.jpg",
+    #     "dot1": (483, 34),
+    #     "dot2": (541, 169)
+    #     #"image_path": "images/manga/pic_1.png",
+    #     # "top-left-dot": ("x", "y"),
+    #     # "bottom-right-dot": ("x", "y")
+    # }
 
     # read image with cv2
-    image = cv2.imread(data["path"])
-    coord = (data["top-left-dot"], data["bottom-right-dot"])
+    image = cv2.imread(server_img_path)
+    coord = (data["dot1"], data["dot2"])
     roi = image[coord[0][1]:coord[1][1], coord[0][0]:coord[1][0]]
     # gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
     # export TESSDATA_PREFIX=/Users/faithsmetanova/Git/Learning/manga-ocr-api/tessdata
-    text = pytesseract.image_to_string(roi, lang='jpn_vert')
+    text = pytesseract.image_to_string(roi, lang='jpn_vert').replace("\n", "")
 
     if text is None:
         return None

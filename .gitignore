@@ -63,6 +63,7 @@ __pycache__/
 *.egg-info/
 .python-version
 server/jap_dict/*
+build/
 
 # Yarn
 yarn-error.log
