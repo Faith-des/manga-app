@@ -1,28 +1,37 @@
-ARG APP_PORT=8081
+# docker build -t manga-app-server2 -f Dockerfile2 .
+# docker run -it --rm manga-app-server2:latest
+FROM ubuntu:18.04
 
-#FROM python:3.8-alpine
-FROM python:3.8
+# TESSERACT
+ENV PYTHONUNBUFFERED 1
+RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository -y ppa:alex-p/tesseract-ocr
+RUN apt-get update && apt-get install -y tesseract-ocr-all
+
+# OPENCV, Python3, Pip
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        python3-pip \
+        python3-opencv \
+        python3-scipy \
+        python3-matplotlib \
+    && ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && rm -rf /var/lib/apt/lists/*
+
+# python3
+# import cv2
 
 WORKDIR /app
 
-# RUN apk add --no-cache \
-#     gcc \
-#     musl-dev
-RUN apt-get update
-RUN apt-get install 'ffmpeg'\
-    'libsm6'\
-    'libxext6'  -y
-
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -Ur requirements.txt
+RUN pip3 install scikit-build
+RUN pip3 install --upgrade pip
+
+RUN pip3 install --no-cache-dir -Ur requirements.txt
 
 COPY . .
 
-COPY jap_dict/jamdict.db /root/.jamdict/data/
+EXPOSE 8081
 
-RUN python3 -m jamdict info
-
-EXPOSE ${APP_PORT}
-
-ENTRYPOINT ["python", "-m", "app"]
+ENTRYPOINT ["python3", "-m", "app"]
