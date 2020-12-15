@@ -16,8 +16,16 @@ services:
 ##      - 8000:8000
 
   app:
-    image: manga-app-server4:latest
+    # image: manga-app-server4:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - './manga:/app/manga'
     ports:
       - 8081:8081
+
+  j-token:
+    image: himkt/konoha:latest
+    ports:
+      - 8000:8000
