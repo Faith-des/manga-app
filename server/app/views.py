@@ -54,18 +54,20 @@ async def tokenize_text(request):
         headers={"Content-Type": "application/json"},
         data=json.dumps({"tokenizer": "mecab", "text": data["text"]}),
     )
-    return web.json_response(response.json()['tokens'][0])
+    return web.json_response(
+        headers=HEADERS,
+        data=response.json()['tokens'][0],
+    )
 
 
 async def word_translate(request):
-    data = await request.post()
+    data = await request.json()
 
-    fake_data = {
-        "word": "自然",
-    }
-
+    # fake_data = {
+    #     "word": "自然",
+    # }
     jmd = Jamdict()
-    result = jmd.lookup(fake_data["word"])
+    result = jmd.lookup(data["word"])
 
     # print all word entries
     #for entry in result.entries:
@@ -76,6 +78,7 @@ async def word_translate(request):
     # # => [▁, 自然, 言語, 処理, を, 勉強, し, ています]
     #return web.json_response({"en_word": result.entries[0]})
     return web.json_response(
-        data={"en_word": result.entries[0]},
+        data={"en_word": result.entries[0].text()},
+        # TODO: later to setup -> result.entries[0].to_json()
         headers=HEADERS,
     )
