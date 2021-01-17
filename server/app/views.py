@@ -35,6 +35,7 @@ async def area_text(request):
     # gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
     # export TESSDATA_PREFIX=/Users/faithsmetanova/Git/Learning/manga-ocr-api/tessdata
     text = pytesseract.image_to_string(roi, lang='jpn_vert').replace("\n", "")
+    print(f"TEXT: {text}")
 
     if text is None:
         return None
