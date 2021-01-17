@@ -34,6 +34,8 @@ export default class Picture extends Component {
 
   sendCoordinates = () => {
     const { x, y, x1, y1 } = this.state;
+    console.log(`dot1 ${x}, ${y}`)
+    console.log(`dot2 ${x1}, ${y1}`)
     //fetch('https://httpbin.org/post', {
     fetch('http://localhost:8081/api/v1/area', {
       method: 'POST',
