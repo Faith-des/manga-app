@@ -2,8 +2,8 @@
 
 OCR Tool for reading Japanese manga.
 
-- Frontend: JavaScript (React App)
-- Backend: Python (aiohttp API server within docker)
+- Frontend: JavaScript (React App) by https://github.com/unknown-cat
+- Backend: Python (aiohttp API server within docker) by https://github.com/Faith-des
 
 # Status of Project
 
