@@ -49,9 +49,12 @@
     margin: 0 1rem;
     font-size: 0.8rem;
     line-height: 150%;
-    letter-spacing: -2px;
     box-sizing: border-box;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.picture__item-text:focus {
+  outline: none;
 }
 
 .picture__item-text:not(:last-child) {
@@ -60,10 +63,26 @@
 
 .btn-text--close, .btn-text--open {
   position: absolute;
-  right: -10px;
+  right: 0;
   top: -10px;
 }
 
 .btn-text--open {
-  right: 41px;
+  right: 26px;
+}
+
+.picture__item-text .btn {
+  background-color: #fff;
+  font-family: inherit;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+}
+
+.picture__item-text .btn:focus {
+  outline: none;
+}
+
+.picture__item-text .btn:active {
+  transform: scale(0.95);
 }
