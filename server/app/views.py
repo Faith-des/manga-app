@@ -1,7 +1,10 @@
+import json
+
 import cv2
 import pytesseract
 from aiohttp import web
 from multidict import MultiDict
+import requests
 from jamdict import Jamdict
 
 HEADERS = MultiDict(
@@ -23,9 +26,6 @@ async def area_text(request):
     #     "path": "manga/test.jpg",
     #     "dot1": (483, 34),
     #     "dot2": (541, 169)
-    #     #"image_path": "images/manga/pic_1.png",
-    #     # "top-left-dot": ("x", "y"),
-    #     # "bottom-right-dot": ("x", "y")
     # }
 
     # read image with cv2
@@ -35,6 +35,7 @@ async def area_text(request):
     # gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
     # export TESSDATA_PREFIX=/Users/faithsmetanova/Git/Learning/manga-ocr-api/tessdata
     text = pytesseract.image_to_string(roi, lang='jpn_vert').replace("\n", "")
+    print(f"TEXT: {text}")
 
     if text is None:
         return None
@@ -46,15 +47,28 @@ async def area_text(request):
         )
 
 
+async def tokenize_text(request):
+    data = await request.json()
+    response = requests.post(
+        # url='http://localhost:8000/api/tokenize',
+        url='http://host.docker.internal:8000/api/tokenize',
+        headers={"Content-Type": "application/json"},
+        data=json.dumps({"tokenizer": "mecab", "text": data["text"]}),
+    )
+    return web.json_response(
+        headers=HEADERS,
+        data=response.json()['tokens'][0],
+    )
+
+
 async def word_translate(request):
-    data = await request.post()
+    data = await request.json()
 
-    fake_data = {
-        "word": "自然",
-    }
-
+    # fake_data = {
+    #     "word": "自然",
+    # }
     jmd = Jamdict()
-    result = jmd.lookup(fake_data["word"])
+    result = jmd.lookup(data["word"])
 
     # print all word entries
     #for entry in result.entries:
@@ -65,6 +79,7 @@ async def word_translate(request):
     # # => [▁, 自然, 言語, 処理, を, 勉強, し, ています]
     #return web.json_response({"en_word": result.entries[0]})
     return web.json_response(
-        data={"en_word": result.entries[0]},
+        data={"en_word": result.entries[0].text()},
+        # TODO: later to setup -> result.entries[0].to_json()
         headers=HEADERS,
     )

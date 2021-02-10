@@ -4,3 +4,8 @@
 
 	box-shadow: 1px 1px 1px 1px #000000;
 }
+
+.footer__nav {
+	padding: 20px;
+	text-align: center;
+}

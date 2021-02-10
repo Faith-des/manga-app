@@ -10,11 +10,6 @@ export default class SideBar extends Component {
         <aside className="side-bar">
           <ul className="side-bar__list">
             <ListItem/>
-            <ListItem/>
-            <ListItem/>
-            <ListItem/>
-            <ListItem/>
-            <ListItem/>
           </ul>
         </aside>
     )
