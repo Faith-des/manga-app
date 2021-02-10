@@ -9,6 +9,10 @@ OCR Tool for reading Japanese manga.
 
 100% WIP
 
+# Usage
+
+![Sample Video](video/manga-app-test.mp4)
+
 # Run server
 
 from server folder
@@ -25,7 +29,7 @@ yarn start
 ```
 
 # Image location
-TODO: to make one shared (client+server) place for images
+TODO: to make one shared (client+server) place for images.
 Currently just working with one build-in image
 
 # Japanese Dictionary file (jap_dict/jamdict.db)
