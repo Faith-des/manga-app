@@ -12,6 +12,7 @@ OCR Tool for reading Japanese manga.
 # Usage
 
 ![Sample Video](video/manga-app-test.mp4)
+[![IMAGE ALT TEXT HERE]](video/manga-app-test.mp4)
 
 # Run server
 
