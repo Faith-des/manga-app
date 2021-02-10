@@ -28,8 +28,6 @@ yarn start
 TODO: to make one shared (client+server) place for images
 Currently just working with one build-in image
 
-# Upload Image?
-
 # Japanese Dictionary file (jap_dict/jamdict.db)
 
 To have a Japanese dictionary download the file jamdict.db from:
