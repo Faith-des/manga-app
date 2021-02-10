@@ -53,6 +53,7 @@ jspm_packages/
 
 # gatsby files
 #.cache/
+client/yarn.lock
 
 # Mac files
 .DS_Store

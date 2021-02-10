@@ -4,8 +4,11 @@ FROM ubuntu:18.04
 
 # TESSERACT
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONIOENCODING=utf8
 RUN apt-get update && apt-get install -y software-properties-common && add-apt-repository -y ppa:alex-p/tesseract-ocr
 RUN apt-get update && apt-get install -y tesseract-ocr-all
+# RUN apt-get update && apt-get install -y tesseract-ocr-jpn tesseract-ocr-jpn-vert
+# RUN apt-get update && apt-get install -y tesseract-ocr-jpn-vert
 
 # OPENCV, Python3, Pip
 RUN apt-get update \
@@ -18,6 +21,7 @@ RUN apt-get update \
     && dpkg-reconfigure --frontend noninteractive tzdata \
     && rm -rf /var/lib/apt/lists/*
 
+# debuging:
 # python3
 # import cv2
 

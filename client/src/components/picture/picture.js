@@ -46,7 +46,8 @@ export default class Picture extends Component {
       .then(json_object => {
         const ul = document.querySelector('.picture__item-list');
         ul.insertAdjacentHTML('afterbegin', `
-          <li class="picture__item-text">${ json_object.text }
+          <li class="picture__item-text"
+          contenteditable="true">${ json_object.text }
             <button class="btn-text--close" onclick="parentElement.remove()">Close</button>
             <button class="btn-text--open">Open</button>
           </li>`);
